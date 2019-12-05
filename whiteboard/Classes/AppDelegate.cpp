@@ -1,5 +1,5 @@
-#include "AppDelegate.h"
-#include "HelloWorldScene.h"
+﻿#include "AppDelegate.h"
+#include "CWhiteBoard.h"
 
 USING_NS_CC;
 
@@ -11,8 +11,6 @@ AppDelegate::~AppDelegate()
 {
 }
 
-//if you want a different context,just modify the value of glContextAttrs
-//it will takes effect on all platforms
 void AppDelegate::initGLContextAttrs()
 {
     //set OpenGL context attributions,now can only set six attributions:
@@ -27,11 +25,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("whiteboard", Rect(0, 0, 960, 640));
+        glview = GLViewImpl::createWithRect("whiteboard", Rect(0, 0, 2048, 1536), 0.5f);
         director->setOpenGLView(glview);
     }
 
-    director->getOpenGLView()->setDesignResolutionSize(960, 640, ResolutionPolicy::SHOW_ALL);
+	director->getOpenGLView()->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -42,7 +40,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("res");
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = CWhiteBoard::createScene();
 
     // run
     director->runWithScene(scene);

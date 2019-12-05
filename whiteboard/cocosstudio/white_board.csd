@@ -50,7 +50,7 @@
             <FileData Type="PlistSubImage" Path="tool_red.png" Plist="whiteboard.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="erase" ActionTag="1925245011" Tag="161" IconVisible="False" LeftMargin="601.0541" RightMargin="1241.9459" TopMargin="1424.2123" BottomMargin="-3.2123" ctype="SpriteObjectData">
+          <AbstractNodeData Name="eraser" ActionTag="1925245011" Tag="161" IconVisible="False" LeftMargin="601.0541" RightMargin="1241.9459" TopMargin="1424.2123" BottomMargin="-3.2123" ctype="SpriteObjectData">
             <Size X="205.0000" Y="115.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="703.5541" Y="54.2877" />

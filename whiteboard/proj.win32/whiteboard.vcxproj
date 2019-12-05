@@ -150,12 +150,18 @@ xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.10\prebuilt\win32\*.*" "$(OutDir)"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\CDrawingPanel.cpp" />
+    <ClCompile Include="..\Classes\common_tool\CButton.cpp" />
+    <ClCompile Include="..\Classes\common_tool\CSwitch.cpp" />
+    <ClCompile Include="..\Classes\CWhiteBoard.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\CDrawingPanel.h" />
+    <ClInclude Include="..\Classes\common_tool\CButton.h" />
+    <ClInclude Include="..\Classes\common_tool\CSwitch.h" />
+    <ClInclude Include="..\Classes\CWhiteBoard.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

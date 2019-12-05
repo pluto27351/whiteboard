@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\common_tool">
+      <UniqueIdentifier>{7ba798bc-17b0-4dd2-a53b-4f4ad5b57f61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -18,7 +21,16 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+    <ClCompile Include="..\Classes\CWhiteBoard.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common_tool\CButton.cpp">
+      <Filter>src\common_tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common_tool\CSwitch.cpp">
+      <Filter>src\common_tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CDrawingPanel.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +41,16 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
+    <ClInclude Include="..\Classes\CWhiteBoard.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common_tool\CButton.h">
+      <Filter>src\common_tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common_tool\CSwitch.h">
+      <Filter>src\common_tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CDrawingPanel.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
