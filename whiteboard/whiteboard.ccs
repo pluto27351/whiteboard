@@ -1,0 +1,39 @@
+<Solution>
+  <PropertyGroup Name="whiteboard" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="shader">
+          <File Name="color.fsh" />
+          <File Name="gray.fsh" />
+        </Folder>
+        <PlistImageFolder Image="whiteboard.png" PListFile="whiteboard.plist" Name=".whiteboard_PList.Dir">
+          <PlistImageFile Name="bg.png" Key="bg.png" />
+          <PlistImageFile Name="brush.png" Key="brush.png" />
+          <PlistImageFile Name="eraser_brush.png" Key="eraser_brush.png" />
+          <PlistImageFile Name="eraser_line.png" Key="eraser_line.png" />
+          <PlistImageFile Name="next_L.png" Key="next_L.png" />
+          <PlistImageFile Name="next_L_click.png" Key="next_L_click.png" />
+          <PlistImageFile Name="next_R.png" Key="next_R.png" />
+          <PlistImageFile Name="next_R_click.png" Key="next_R_click.png" />
+          <PlistImageFile Name="select_bg.png" Key="select_bg.png" />
+          <PlistImageFile Name="select_box.png" Key="select_box.png" />
+          <PlistImageFile Name="sizebar_in.png" Key="sizebar_in.png" />
+          <PlistImageFile Name="sizebar_out.png" Key="sizebar_out.png" />
+          <PlistImageFile Name="tool_black.png" Key="tool_black.png" />
+          <PlistImageFile Name="tool_black_click.png" Key="tool_black_click.png" />
+          <PlistImageFile Name="tool_blue.png" Key="tool_blue.png" />
+          <PlistImageFile Name="tool_blue_click.png" Key="tool_blue_click.png" />
+          <PlistImageFile Name="tool_eraser.png" Key="tool_eraser.png" />
+          <PlistImageFile Name="tool_eraser_click.png" Key="tool_eraser_click.png" />
+          <PlistImageFile Name="tool_red.png" Key="tool_red.png" />
+          <PlistImageFile Name="tool_red_click.png" Key="tool_red_click.png" />
+          <PlistImageFile Name="tool_reset.png" Key="tool_reset.png" />
+          <PlistImageFile Name="tool_reset_click.png" Key="tool_reset_click.png" />
+        </PlistImageFolder>
+        <TTF Name="PingFang.ttc" />
+        <Project Name="white_board.csd" Type="Scene" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
