@@ -1,4 +1,4 @@
-#include "CSwitch.h"
+ï»¿#include "CSwitch.h"
 
 USING_NS_CC;
 
@@ -8,16 +8,16 @@ void CSwitch::setButtonInfo(const char *normalImg, const char *selectedImg, Laye
 	_selectedPic = (Sprite *)Sprite::createWithSpriteFrameName(selectedImg);
 	_enablePic = NULL;
 	_BtnLoc = locPt;
-	_normalPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
-	_selectedPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
+	_normalPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
+	_selectedPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
 	_selectedPic->setVisible(false);
 	_selectedPic->setScale(1.15f);
-	parent.addChild(_normalPic, level);  // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
-	parent.addChild(_selectedPic, level); // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
+	parent.addChild(_normalPic, level);  // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
+	parent.addChild(_selectedPic, level); // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
 
-	// ¨ú±o¤j¤p
+	// å–å¾—å¤§å°
 	_BtnSize = _normalPic->getContentSize();
-	// ³]©w§PÂ_°Ï°ì
+	// è¨­å®šåˆ¤æ–·å€åŸŸ
 	_BtnRect.size = _BtnSize;
 	_BtnRect.origin.x = _BtnLoc.x - _BtnSize.width*0.5f;
 	_BtnRect.origin.y = _BtnLoc.y - _BtnSize.height*0.5f;
@@ -35,19 +35,19 @@ void CSwitch::setButtonInfo(const char *normalImg, const char *selectedImg, cons
 	_enablePic = (Sprite *)Sprite::createWithSpriteFrameName(enableImg);
 	//_enablePic->setColor(Color3B::RED);
 	_BtnLoc = locPt;
-	_normalPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
-	_selectedPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
+	_normalPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
+	_selectedPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
 	_enablePic->setPosition(_BtnLoc);
 	_selectedPic->setVisible(false);
 	_selectedPic->setScale(1.15f);
 	_enablePic->setVisible(false);
-	parent.addChild(_normalPic, level);  // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
-	parent.addChild(_selectedPic, level); // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
+	parent.addChild(_normalPic, level);  // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
+	parent.addChild(_selectedPic, level); // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
 	parent.addChild(_enablePic, level);
 
-	// ¨ú±o¤j¤p
+	// å–å¾—å¤§å°
 	_BtnSize = _normalPic->getContentSize();
-	// ³]©w§PÂ_°Ï°ì
+	// è¨­å®šåˆ¤æ–·å€åŸŸ
 	_BtnRect.size = _BtnSize;
 	_BtnRect.origin.x = _BtnLoc.x - _BtnSize.width*0.5f;
 	_BtnRect.origin.y = _BtnLoc.y - _BtnSize.height*0.5f;
@@ -66,15 +66,15 @@ bool CSwitch::touchesBegin(cocos2d::Point inPos)
 		_bTouched = true;
 		_normalPic->setVisible(_bStatus);
 		_selectedPic->setVisible(!_bStatus);
-		return(true); // ¦³«ö¦b¤W­±
+		return(true); // æœ‰æŒ‰åœ¨ä¸Šé¢
 	}
 	return(false);
 }
 
 bool CSwitch::touchesMoved(cocos2d::Point inPos)
 {
-	if (_bTouched) { // ¥u¦³³Q«ö¦íªº®É­Ô¤~³B²z
-		if (!_BtnRect.containsPoint(inPos)) { // ¤â«üÀY¦ì¸mÂ÷¶}«ö¶s
+	if (_bTouched) { // åªæœ‰è¢«æŒ‰ä½çš„æ™‚å€™æ‰è™•ç†
+		if (!_BtnRect.containsPoint(inPos)) { // æ‰‹æŒ‡é ­ä½ç½®é›¢é–‹æŒ‰éˆ•
 			_bTouched = false;
 			_normalPic->setVisible(!_bStatus);
 			_selectedPic->setVisible(_bStatus);
@@ -82,7 +82,7 @@ bool CSwitch::touchesMoved(cocos2d::Point inPos)
 		}
 		else return(true);
 	}
-	return(false); // ¨Æ«á¦A²¾¨ì«ö¶s¤W±N³Q©¿²¤
+	return(false); // äº‹å¾Œå†ç§»åˆ°æŒ‰éˆ•ä¸Šå°‡è¢«å¿½ç•¥
 }
 
 bool CSwitch::touchesEnded(cocos2d::Point inPos)
@@ -91,7 +91,7 @@ bool CSwitch::touchesEnded(cocos2d::Point inPos)
 	{
 		_bTouched = false;
 		_bStatus = !_bStatus;
-		if (_BtnRect.containsPoint(inPos)) return(true);  // ¤â«üÀY¦ì¸m«ö¶s®É¡AÁÙ¦b¸Ó«ö¶s¤W
+		if (_BtnRect.containsPoint(inPos)) return(true);  // æ‰‹æŒ‡é ­ä½ç½®æŒ‰éˆ•æ™‚ï¼Œé‚„åœ¨è©²æŒ‰éˆ•ä¸Š
 	}
 	return false;
 }
@@ -161,8 +161,8 @@ void CSwitch::setTouchScale(float s) {
 
 void CSwitch::setPosition(Vec2 locPt) {
 	_BtnLoc = locPt;
-	_normalPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
-	_selectedPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
+	_normalPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
+	_selectedPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
 	if (_enablePic != NULL) _enablePic->setPosition(_BtnLoc);
 
 	_BtnRect.origin.x = _BtnLoc.x - _BtnSize.width*0.5f;
@@ -172,7 +172,7 @@ void CSwitch::setPosition(Vec2 locPt) {
 void CSwitch::setScale(float fscale)
 {
 	_fScale = fscale;
-	// ­«·s³]©w§PÂ_°Ï°ì½d³ò
+	// é‡æ–°è¨­å®šåˆ¤æ–·å€åŸŸç¯„åœ
 	_BtnRect.size.width *= _fScale;
 	_BtnRect.size.height *= _fScale;
 	_BtnRect.origin.x = _BtnLoc.x - _BtnRect.size.width*0.5f;

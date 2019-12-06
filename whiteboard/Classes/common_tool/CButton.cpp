@@ -1,4 +1,4 @@
-#include "CButton.h"
+ï»¿#include "CButton.h"
 
 USING_NS_CC;
 
@@ -7,16 +7,16 @@ void CButton::setButtonInfo(const char *normalImg, const char *touchedImg, Layer
 	_normalPic = (Sprite *)Sprite::createWithSpriteFrameName(normalImg);
 	_touchedPic = (Sprite *)Sprite::createWithSpriteFrameName(touchedImg);
 	_BtnLoc = locPt;
-	_normalPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
-	_touchedPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
+	_normalPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
+	_touchedPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
 	_touchedPic->setVisible(false);
 	_touchedPic->setScale(1.15f);
-	parent.addChild(_normalPic, level);  // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
-	parent.addChild(_touchedPic, level); // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
+	parent.addChild(_normalPic, level);  // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
+	parent.addChild(_touchedPic, level); // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
 
-	// ¨ú±o¤j¤p
+	// å–å¾—å¤§å°
 	_BtnSize = _normalPic->getContentSize();
-	// ³]©w§PÂ_°Ï°ì
+	// è¨­å®šåˆ¤æ–·å€åŸŸ
 	_BtnRect.size = _BtnSize;
 	_BtnRect.origin.x = _BtnLoc.x - _BtnSize.width*0.5f;
 	_BtnRect.origin.y = _BtnLoc.y - _BtnSize.height*0.5f;
@@ -31,17 +31,17 @@ void CButton::setButtonInfo(const char *normalImg, const char *touchedImg, const
 	_touchedPic = (Sprite *)Sprite::createWithSpriteFrameName(touchedImg);
 	_enablePic = (Sprite *)Sprite::createWithSpriteFrameName(enableImg);
 	_BtnLoc = locPt;
-	_normalPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
-	_touchedPic->setPosition(_BtnLoc); // ³]©w¦ì¸m
-	_enablePic->setPosition(_BtnLoc); // ³]©w¦ì¸m
+	_normalPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
+	_touchedPic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
+	_enablePic->setPosition(_BtnLoc); // è¨­å®šä½ç½®
 	_touchedPic->setVisible(false);
 	_touchedPic->setScale(1.15f);
-	parent.addChild(_normalPic, level);  // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
-	parent.addChild(_touchedPic, level); // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
-	parent.addChild(_enablePic, level); // ¥[¤J¥Ø«eªº Layer ¤¤ 1: Z ¶bªº¼h¦¸¡A¶V¤j¥Nªí¦b¶V¤W¼h
-	// ¨ú±o¤j¤p
+	parent.addChild(_normalPic, level);  // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
+	parent.addChild(_touchedPic, level); // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
+	parent.addChild(_enablePic, level); // åŠ å…¥ç›®å‰çš„ Layer ä¸­ 1: Z è»¸çš„å±¤æ¬¡ï¼Œè¶Šå¤§ä»£è¡¨åœ¨è¶Šä¸Šå±¤
+	// å–å¾—å¤§å°
 	_BtnSize = _normalPic->getContentSize();
-	// ³]©w§PÂ_°Ï°ì
+	// è¨­å®šåˆ¤æ–·å€åŸŸ
 	_BtnRect.size = _BtnSize;
 	_BtnRect.origin.x = _BtnLoc.x - _BtnSize.width*0.5f;
 	_BtnRect.origin.y = _BtnLoc.y - _BtnSize.height*0.5f;
@@ -65,15 +65,15 @@ bool CButton::touchesBegin(cocos2d::Point inPos)
 		_bTouched = true;
 		_normalPic->setVisible(false);
 		_touchedPic->setVisible(true);
-		return(true); // ¦³«ö¦b¤W­±
+		return(true); // æœ‰æŒ‰åœ¨ä¸Šé¢
 	}
 	return(false);
 }
 
 bool CButton::touchesMoved(cocos2d::Point inPos)
 {
-	if (_bTouched) { // ¥u¦³³Q«ö¦íªº®É­Ô¤~³B²z
-		if (!_BtnRect.containsPoint(inPos)) { // ¤â«üÀY¦ì¸mÂ÷¶}«ö¶s
+	if (_bTouched) { // åªæœ‰è¢«æŒ‰ä½çš„æ™‚å€™æ‰è™•ç†
+		if (!_BtnRect.containsPoint(inPos)) { // æ‰‹æŒ‡é ­ä½ç½®é›¢é–‹æŒ‰éˆ•
 			_bTouched = false;
 			_normalPic->setVisible(true);
 			_touchedPic->setVisible(false);
@@ -81,7 +81,7 @@ bool CButton::touchesMoved(cocos2d::Point inPos)
 		}
 		else return(true);
 	}
-	return(false); // ¨Æ«á¦A²¾¨ì«ö¶s¤W±N³Q©¿²¤
+	return(false); // äº‹å¾Œå†ç§»åˆ°æŒ‰éˆ•ä¸Šå°‡è¢«å¿½ç•¥
 }
 
 bool CButton::touchesEnded(cocos2d::Point inPos)
@@ -91,7 +91,7 @@ bool CButton::touchesEnded(cocos2d::Point inPos)
 		_bTouched = false;
 		_normalPic->setVisible(true);
 		_touchedPic->setVisible(false);
-		if (_BtnRect.containsPoint(inPos)) return(true);  // ¤â«üÀY¦ì¸m«ö¶s®É¡AÁÙ¦b¸Ó«ö¶s¤W
+		if (_BtnRect.containsPoint(inPos)) return(true);  // æ‰‹æŒ‡é ­ä½ç½®æŒ‰éˆ•æ™‚ï¼Œé‚„åœ¨è©²æŒ‰éˆ•ä¸Š
 	}
 	return false;
 }
@@ -149,7 +149,7 @@ void CButton::setPosition(Vec2 locPt) {
 void CButton::setScale(float fscale)
 {
 	_fScale = fscale;
-	// ­«·s³]©w§PÂ_°Ï°ì½d³ò
+	// é‡æ–°è¨­å®šåˆ¤æ–·å€åŸŸç¯„åœ
 	_BtnRect.size.width *= _fScale;
 	_BtnRect.size.height *= _fScale;
 	_BtnRect.origin.x = _BtnLoc.x - _BtnRect.size.width*0.5f;

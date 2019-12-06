@@ -1,4 +1,4 @@
-#include "CDrawingPanel.h"
+ï»¿#include "CDrawingPanel.h"
 
 CDrawingPanel* CDrawingPanel::_pHandDrawing = nullptr;
 
@@ -10,7 +10,7 @@ CDrawingPanel::~CDrawingPanel() {
 }
 
 CDrawingPanel *CDrawingPanel::create()
-{ // «Ø¥ßª«¥óªº¹êÅé
+{ // å»ºç«‹ç‰©ä»¶çš„å¯¦é«”
 
 	if (_pHandDrawing == nullptr) {
 		_pHandDrawing = new (std::nothrow) CDrawingPanel();
@@ -39,7 +39,7 @@ CDrawingPanel *CDrawingPanel::getInstance()
 }
 
 
-void  CDrawingPanel::initDrawingPanel(Node &rootNode, cocos2d::Layer &parent)	// ³]©wªì©l¤º®e
+void  CDrawingPanel::initDrawingPanel(Node &rootNode, cocos2d::Layer &parent)	// è¨­å®šåˆå§‹å…§å®¹
 {
 	parent.addChild(_pHandDrawing, WHITEBOARD_LEVEL);
 
@@ -51,7 +51,7 @@ void  CDrawingPanel::initDrawingPanel(Node &rootNode, cocos2d::Layer &parent)	//
 	_brushSize = 0.3f;
 
 	//parent.addChild(&_boards, WHITEBOARD_LEVEL);
-	// «Ø¥ß¥ÕªO
+	// å»ºç«‹ç™½æ¿
 	Size size = rootNode.getContentSize();
 	for (int i = 0; i < 3; i++) {
 		RenderTexture *board = RenderTexture::create(size.width, size.height, Texture2D::PixelFormat::RGBA8888);
@@ -112,7 +112,7 @@ bool CDrawingPanel::touchesMoved(Point inPt, Point inPrePt)
 {
 	bool bBtnOn = false;
 	if (inPrePt.y < 140)bBtnOn = true;
-	// ²£¥Í¤âÃ¸½u
+	// ç”¢ç”Ÿæ‰‹ç¹ªç·š
 	if (!bBtnOn) {
 		_pWhiteBoard[_nowBoard]->begin();
 		float distance = inPt.getDistance(inPrePt);
@@ -157,7 +157,7 @@ bool CDrawingPanel::touchesMoved(Point inPt, Point inPrePt)
 	return(true);
 }
 
-bool CDrawingPanel::touchesEnded(cocos2d::Point inPt) //¥u¦³²M°£«ö¶s¦^¶Çtrue
+bool CDrawingPanel::touchesEnded(cocos2d::Point inPt) //åªæœ‰æ¸…é™¤æŒ‰éˆ•å›å‚³true
 {
 	return(false);
 }

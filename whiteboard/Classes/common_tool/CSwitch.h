@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "cocos2d.h"
 
@@ -14,10 +14,10 @@ private:
 	cocos2d::Point _BtnLoc;
 	cocos2d::Rect  _BtnRect;
 
-	float _fScale, _ftouchedScale;	// ¹Ï¤ùÁY©ñªº¤j¤p
-	bool _bTouched; // ¬O§_³Q«ö¤U
-	bool _bEnabled; // ¬O§_¦³§@¥Î
-	bool _bVisible; // ¬O§_Åã¥Ü
+	float _fScale, _ftouchedScale;	// åœ–ç‰‡ç¸®æ”¾çš„å¤§å°
+	bool _bTouched; // æ˜¯å¦è¢«æŒ‰ä¸‹
+	bool _bEnabled; // æ˜¯å¦æœ‰ä½œç”¨
+	bool _bVisible; // æ˜¯å¦é¡¯ç¤º
 	bool _bStatus;
 
 public:
@@ -28,7 +28,7 @@ public:
 	bool touchesMoved(cocos2d::Point inPos);
 	bool touchesEnded(cocos2d::Point inPos);
 	void setVisible(bool bVis);
-	void setStatus(bool status);	// ³]©w³o­Ó«ö¶s¥Ø«e¬O¿ï¨úª¬ºA
+	void setStatus(bool status);	// è¨­å®šé€™å€‹æŒ‰éˆ•ç›®å‰æ˜¯é¸å–ç‹€æ…‹
 	void setEnabled(bool bEnable);
 	void setPosition(Vec2 locPt);
 	Point getPosition() { return _BtnLoc; }

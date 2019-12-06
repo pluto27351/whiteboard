@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <Vector>
 #include "cocos2d.h"
@@ -36,13 +36,13 @@ protected:
 	static CDrawingPanel* _pHandDrawing;
 
 public:
-	static CDrawingPanel *create();		// «Ø¥ßª«¥óªº¹êÅé
-	static CDrawingPanel *getInstance();	// ¨ú±o CDrawingPanel ªº¹êÅé
-	void   initDrawingPanel(Node &rootNode, cocos2d::Layer &parent);	// ³]©wªì©l¤º®e
+	static CDrawingPanel *create();		// å»ºç«‹ç‰©ä»¶çš„å¯¦é«”
+	static CDrawingPanel *getInstance();	// å–å¾— CDrawingPanel çš„å¯¦é«”
+	void   initDrawingPanel(Node &rootNode, cocos2d::Layer &parent);	// è¨­å®šåˆå§‹å…§å®¹
 
 	void setLineColor(Color3B color);
 	void drawing(Point &pt);
-	void clearWhiteBoard();	// ²M°£©Ò¦³Ã¸»s¦bµe­±¤Wªº½u±ø
+	void clearWhiteBoard();	// æ¸…é™¤æ‰€æœ‰ç¹ªè£½åœ¨ç•«é¢ä¸Šçš„ç·šæ¢
 	void SetPen(int colorNum);
 	void setMode(int mode) { _toolMode = mode; }
 	void setBrushSize(float s) { _brushSize = s; }
