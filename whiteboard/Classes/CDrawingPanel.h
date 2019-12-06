@@ -44,6 +44,8 @@ public:
 	void clearWhiteBoard();	// 清除所有繪製在畫面上的線條
 	void SetPen(int colorNum);
 	void setMode(int mode) { _toolMode = mode; }
+	void setBrushSize(float s) { _brushSize = s; }
+	Color3B getColor() { return (_lineColor); }
 
 	bool touchesBegin(Point inPt);
 	bool touchesMoved(Point inPt, Point inPrePt);

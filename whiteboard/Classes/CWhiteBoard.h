@@ -14,7 +14,9 @@ private:
 	CDrawingPanel *_handDrawing;
 	CButton _clearAllBtn;
 	CSwitch _toolBtn[4];
-	Slider _brushSize, _sceneNum;
+	Slider *_brushSize,*_sceneBar;
+	Text *_brushSizeText;
+	Sprite *_eraserPic,*_penPic;
 
 	int _toolMode;
 
@@ -34,7 +36,9 @@ public:
 	void onTouchMoved(cocos2d::Touch *pTouch, cocos2d::Event *pEvent); //觸碰移動事件
 	void onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent); //觸碰結束事件 
    
-    
+	void brushChange(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
+	void sceneChange(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
+
     // implement the "static create()" method manually
     CREATE_FUNC(CWhiteBoard);
 };
