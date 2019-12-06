@@ -85,6 +85,18 @@ void CWhiteBoard::setButton(Node &rootNode) {
 	_clearAllBtn.setScale(s);
 	rootNode.removeChildByName("clear");
 
+	for (int i = 0; i < 3; i++) {
+
+		pBtn = (Sprite *)rootNode.getChildByName(StringUtils::format("selectbox_%02d", i));
+		RenderTexture *sc = RenderTexture::create(_viewSize.width,_viewSize.height-140, Texture2D::PixelFormat::RGBA8888);
+		sc->setPosition(pBtn->getPosition());
+		sc->setScale(0.075f);
+		sc->retain();
+		addChild(sc, INTERFACE_LEVEL);
+		_screenShots.push_back(sc);
+	}
+	_nowScreen = 0;
+
 	_brushSize = (Slider*)rootNode.getChildByName("size_bar");
 	_brushSize->addEventListener(CC_CALLBACK_2(CWhiteBoard::brushChange, this));
 	_brushSizeText = (Text *)rootNode.getChildByName("size_text");
@@ -95,13 +107,13 @@ void CWhiteBoard::setButton(Node &rootNode) {
 	_eraserPic->setPosition(Vec2(_viewSize.width/2,_viewSize.height/2));
 	_eraserPic->setScale(0.3f);
 	_eraserPic->setVisible(false);
-	addChild(_eraserPic, INTERFACE_LEVEL); 
+	addChild(_eraserPic, INTERFACE_LEVEL+1); 
 
-	_penPic = (Sprite *)Sprite::createWithSpriteFrameName("brush.png");
+	_penPic = (Sprite *)Sprite::createWithSpriteFrameName("brush_line.png");
 	_penPic->setPosition(Vec2(_viewSize.width / 2, _viewSize.height / 2));
 	_penPic->setScale(0.3f);
 	_penPic->setVisible(false);
-	addChild(_penPic, INTERFACE_LEVEL);
+	addChild(_penPic, INTERFACE_LEVEL+1);
 }
 
 
@@ -172,6 +184,7 @@ void  CWhiteBoard::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
 
 	if (_clearAllBtn.touchesEnded(touchLoc)) {
 		_handDrawing->clearWhiteBoard();
+		_screenShots[_nowScreen]->clear(0, 0, 0, 0);
 	}
 
 	_handDrawing->touchesEnded(touchLoc);
@@ -215,15 +228,19 @@ void CWhiteBoard::sceneChange(cocos2d::Ref* sender, cocos2d::ui::Slider::EventTy
 		
 	}
 	else if (type == Slider::EventType::ON_SLIDEBALL_UP) {
-		int scene;
+		if (percent > 75)    _nowScreen = 2;
+		else if(percent >25) _nowScreen = 1;
+		else				 _nowScreen = 0;
 
-		if (percent > 75)    scene = 2;
-		else if(percent >25) scene = 1;
-		else				 scene = 0;
-
-		_sceneBar->setPercent(scene*50);
-		_handDrawing->setPosition(Vec2(0-scene * _viewSize.width, 0));
-		_handDrawing->setNowBoard(scene);
+		_sceneBar->setPercent(_nowScreen *50);
+		_handDrawing->setPosition(Vec2(0 - _nowScreen * _viewSize.width, 0));
+		_handDrawing->setNowBoard(_nowScreen);
+	}
+	else if (type == Slider::EventType::ON_SLIDEBALL_DOWN) {
+		_screenShots[_nowScreen]->clear(0, 0, 0, 0);
+		_screenShots[_nowScreen]->begin();
+		_handDrawing->visit();
+		_screenShots[_nowScreen]->end();
 	}
 }
 

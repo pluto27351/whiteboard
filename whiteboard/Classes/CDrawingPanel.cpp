@@ -111,7 +111,7 @@ bool CDrawingPanel::touchesBegin(cocos2d::Point inPt)
 bool CDrawingPanel::touchesMoved(Point inPt, Point inPrePt)
 {
 	bool bBtnOn = false;
-
+	if (inPrePt.y < 140)bBtnOn = true;
 	// 產生手繪線
 	if (!bBtnOn) {
 		_pWhiteBoard[_nowBoard]->begin();

@@ -13,6 +13,8 @@ class CWhiteBoard : public cocos2d::Layer
 private:
 	Size _viewSize;
 	CDrawingPanel *_handDrawing;
+	std::vector<RenderTexture *> _screenShots;
+	int _nowScreen;
 	CButton _clearAllBtn;
 	CSwitch _toolBtn[4];
 	Slider *_brushSize,*_sceneBar;

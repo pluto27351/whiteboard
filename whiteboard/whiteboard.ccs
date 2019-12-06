@@ -10,12 +10,14 @@
         <PlistImageFolder Image="whiteboard.png" PListFile="whiteboard.plist" Name=".whiteboard_PList.Dir">
           <PlistImageFile Name="bg.png" Key="bg.png" />
           <PlistImageFile Name="brush.png" Key="brush.png" />
+          <PlistImageFile Name="brush_line.png" Key="brush_line.png" />
           <PlistImageFile Name="eraser_brush.png" Key="eraser_brush.png" />
           <PlistImageFile Name="eraser_line.png" Key="eraser_line.png" />
           <PlistImageFile Name="next_L.png" Key="next_L.png" />
           <PlistImageFile Name="next_L_click.png" Key="next_L_click.png" />
           <PlistImageFile Name="next_R.png" Key="next_R.png" />
           <PlistImageFile Name="next_R_click.png" Key="next_R_click.png" />
+          <PlistImageFile Name="none.png" Key="none.png" />
           <PlistImageFile Name="select_bg.png" Key="select_bg.png" />
           <PlistImageFile Name="select_box.png" Key="select_box.png" />
           <PlistImageFile Name="sizebar_in.png" Key="sizebar_in.png" />
@@ -30,8 +32,6 @@
           <PlistImageFile Name="tool_red_click.png" Key="tool_red_click.png" />
           <PlistImageFile Name="tool_reset.png" Key="tool_reset.png" />
           <PlistImageFile Name="tool_reset_click.png" Key="tool_reset_click.png" />
-          <PlistImageFile Name="none.png" Key="none.png" />
-          <PlistImageFile Name="brush_line.png" Key="brush_line.png" />
         </PlistImageFolder>
         <TTF Name="PingFang.ttc" />
         <Project Name="white_board.csd" Type="Scene" />

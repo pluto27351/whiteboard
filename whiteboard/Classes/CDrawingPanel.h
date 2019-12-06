@@ -21,8 +21,6 @@ enum mode { PEN_MODE, ERASER_MODE };
 class CDrawingPanel : public Layer
 {
 protected:
-	//RenderTexture *_pWhiteBoard;
-	//Node _boards;
 	std::vector<RenderTexture *>_pWhiteBoard;
 	int _nowBoard;
 	Sprite* _pPenBrush;
