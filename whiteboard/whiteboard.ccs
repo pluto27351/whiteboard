@@ -30,6 +30,7 @@
           <PlistImageFile Name="tool_red_click.png" Key="tool_red_click.png" />
           <PlistImageFile Name="tool_reset.png" Key="tool_reset.png" />
           <PlistImageFile Name="tool_reset_click.png" Key="tool_reset_click.png" />
+          <PlistImageFile Name="none.png" Key="none.png" />
         </PlistImageFolder>
         <TTF Name="PingFang.ttc" />
         <Project Name="white_board.csd" Type="Scene" />

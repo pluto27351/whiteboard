@@ -28,15 +28,19 @@ bool CWhiteBoard::init()
 	auto rootNode = CSLoader::createNode("white_board.csb");
 	addChild(rootNode);
 
+	setButton(*rootNode);
+
 	_handDrawing = CDrawingPanel::create();
 	_handDrawing->initDrawingPanel(*rootNode, *this);
 	_handDrawing->retain();
 
+	switchButton(BK_PEN);
 
-	_listener1 = EventListenerTouchAllAtOnce::create();
-	_listener1->onTouchesBegan = CC_CALLBACK_2(CWhiteBoard::onTouchesBegan, this);
-	_listener1->onTouchesMoved = CC_CALLBACK_2(CWhiteBoard::onTouchesMoved, this);
-	_listener1->onTouchesEnded = CC_CALLBACK_2(CWhiteBoard::onTouchesEnded, this);
+
+	_listener1 = EventListenerTouchOneByOne::create();	//創建一個一對一的事件聆聽器
+	_listener1->onTouchBegan = CC_CALLBACK_2(CWhiteBoard::onTouchBegan, this);		//加入觸碰開始事件
+	_listener1->onTouchMoved = CC_CALLBACK_2(CWhiteBoard::onTouchMoved, this);		//加入觸碰移動事件
+	_listener1->onTouchEnded = CC_CALLBACK_2(CWhiteBoard::onTouchEnded, this);		//加入觸碰離開事件
 
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(_listener1, this);	//加入剛創建的事件聆聽器
 	this->schedule(CC_SCHEDULE_SELECTOR(CWhiteBoard::doStep));
@@ -51,43 +55,108 @@ void CWhiteBoard::doStep(float dt)  // OnFrameMove
 
 }
 
+void CWhiteBoard::setButton(Node &rootNode) {
+	Sprite *pBtn = (Sprite *)rootNode.getChildByName("pen_red");
+	Point pt = pBtn->getPosition();
+	auto s = pBtn->getScale();
+	_toolBtn[R_PEN].setButtonInfo("tool_red.png", "tool_red_click.png", *this, pt, INTERFACE_LEVEL);
+	_toolBtn[R_PEN].setScale(s);
+	rootNode.removeChildByName("pen_red");
+	
+	pBtn = (Sprite *)rootNode.getChildByName("pen_black");
+	pt = pBtn->getPosition();
+	s = pBtn->getScale();
+	_toolBtn[BK_PEN].setButtonInfo("tool_black.png", "tool_black_click.png", *this, pt, INTERFACE_LEVEL);
+	_toolBtn[BK_PEN].setScale(s);
+	rootNode.removeChildByName("pen_black");
+	
+	pBtn = (Sprite *)rootNode.getChildByName("pen_blue");
+	pt = pBtn->getPosition();
+	s = pBtn->getScale();
+	_toolBtn[BL_PEN].setButtonInfo("tool_blue.png", "tool_blue_click.png", *this, pt, INTERFACE_LEVEL);
+	_toolBtn[BL_PEN].setScale(s);
+	rootNode.removeChildByName("pen_blue");
+	
+	pBtn = (Sprite *)rootNode.getChildByName("eraser");
+	pt = pBtn->getPosition();
+	s = pBtn->getScale();
+	_toolBtn[ERASER].setButtonInfo("tool_eraser.png", "tool_eraser_click.png", *this, pt, INTERFACE_LEVEL);
+	_toolBtn[ERASER].setScale(s);
+	rootNode.removeChildByName("erease");
+	
+	// 設定清楚螢幕所有手繪圖型的按鈕
+	pBtn = (Sprite *)rootNode.getChildByName("clear");
+	pt = pBtn->getPosition();
+	s = pBtn->getScale();
+	_clearAllBtn.setButtonInfo("tool_reset.png", "tool_reset_click.png", *this, pt, INTERFACE_LEVEL);
+	_clearAllBtn.setScale(s);
+	rootNode.removeChildByName("clear");
+}
 
-void CWhiteBoard::onTouchesBegan(const std::vector<cocos2d::Touch*> touches, cocos2d::Event *event) {
-  //  _toolMode = _handDrawing->getMode();
-	for (auto &item : touches) {
-		auto touch = item;
-		auto touchLoc = touch->getLocation();
-		auto touchId = touch->getID();
+void CWhiteBoard::switchButton(int num) {
+	for (int i = 0; i < 4; i++) {
+		_toolBtn[i].setStatus(false);
+	}
+	_toolBtn[num].setStatus(true);
 
-		_handDrawing->touchesBegin(touchLoc);
+	if (num == ERASER) {
+		_handDrawing->setMode(ERASER_MODE);
+	}
+	else {
+		_handDrawing->SetPen(num);
+		_handDrawing->setMode(PEN_MODE);
+	}
+	
+}
+
+
+
+bool CWhiteBoard::onTouchBegan(cocos2d::Touch *pTouch, cocos2d::Event *pEvent) {
+	Point touchLoc = pTouch->getLocation();
+
+	for (int i = 0; i < 4; i++) {
+		_toolBtn[i].touchesBegin(touchLoc);
+	}
+	_clearAllBtn.touchesBegin(touchLoc);
+
+	_handDrawing->touchesBegin(touchLoc);
 		//if (touchOnEmpty && _toolMode == HAND_MODE) {
 		//	_handDrawing->changeToBlackPen();
 		//}
-	}
+	
+	return true;
 }
 
-void CWhiteBoard::onTouchesMoved(const std::vector<cocos2d::Touch*> touches, cocos2d::Event *event)
+void CWhiteBoard::onTouchMoved(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
 {
-	for (auto &item : touches) {
-		auto touch = item;
-		auto touchLoc = touch->getLocation();
-		auto touchId = touch->getID();
-		Point preTouchLoc = touch->getPreviousLocation();
+	Point touchLoc = pTouch->getLocation();
+	Point preTouchLoc = pTouch->getPreviousLocation();
 
-		_handDrawing->touchesMoved(touchLoc, preTouchLoc);
-
+	for (int i = 0; i < 4; i++) {
+		_toolBtn[i].touchesMoved(touchLoc);
 	}
+	_clearAllBtn.touchesMoved(touchLoc);
+
+	_handDrawing->touchesMoved(touchLoc, preTouchLoc);
+
 }
 
-void  CWhiteBoard::onTouchesEnded(const std::vector<cocos2d::Touch*> touches, cocos2d::Event *event)
+void  CWhiteBoard::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
 {
-	for (auto &item : touches) {
-		auto touch = item;
-		auto touchLoc = touch->getLocation();
-		auto touchId = touch->getID();
-			
-		_handDrawing->touchesEnded(touchLoc);
+	Point touchLoc = pTouch->getLocation();
+
+	for (int i = 0; i < 4; i++) {
+		if (_toolBtn[i].touchesEnded(touchLoc)) {
+			switchButton(i);
+		}
 	}
+
+	if (_clearAllBtn.touchesEnded(touchLoc)) {
+		_handDrawing->clearWhiteBoard();
+	}
+
+	_handDrawing->touchesEnded(touchLoc);
+	
 }
 
 CWhiteBoard::~CWhiteBoard()

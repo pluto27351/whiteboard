@@ -14,7 +14,7 @@ private:
 	cocos2d::Size  _BtnSize;
 	cocos2d::Point _BtnLoc;
 	cocos2d::Rect  _BtnRect;
-
+	
 	float _fScale, _ftouchedScale;	// 圖片縮放的大小
 	bool _bTouched; // 是否被按下
 	bool _bEnabled; // 是否有作用

@@ -82,7 +82,7 @@
             <PreSize X="0.1577" Y="0.0339" />
             <FileData Type="PlistSubImage" Path="sizebar_out.png" Plist="whiteboard.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="size_bar" ActionTag="1368109766" Tag="73" IconVisible="False" LeftMargin="938.8458" RightMargin="786.1542" TopMargin="1451.5142" BottomMargin="32.4858" ProgressInfo="30" ctype="LoadingBarObjectData">
+          <AbstractNodeData Name="size_bar" ActionTag="1368109766" Tag="73" IconVisible="False" LeftMargin="938.8458" RightMargin="786.1542" TopMargin="1451.5142" BottomMargin="32.4858" ProgressInfo="100" ctype="LoadingBarObjectData">
             <Size X="323.0000" Y="52.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1100.3458" Y="58.4858" />
@@ -104,49 +104,52 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="selectbox_01" ActionTag="1879656617" Tag="77" IconVisible="False" LeftMargin="1890.4226" RightMargin="-7.4226" TopMargin="1400.6875" BottomMargin="5.3125" ctype="SpriteObjectData">
+          <AbstractNodeData Name="selectbox_01" ActionTag="1879656617" Tag="77" IconVisible="False" LeftMargin="1890.2001" RightMargin="-7.2002" TopMargin="1399.8086" BottomMargin="6.1914" ctype="SpriteObjectData">
             <Size X="165.0000" Y="130.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1972.9226" Y="70.3125" />
+            <Position X="1972.7001" Y="71.1914" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.9633" Y="0.0458" />
+            <PrePosition X="0.9632" Y="0.0463" />
             <PreSize X="0.0806" Y="0.0846" />
             <FileData Type="PlistSubImage" Path="select_bg.png" Plist="whiteboard.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="selectbox_02" ActionTag="-613737666" Tag="78" IconVisible="False" LeftMargin="1734.1167" RightMargin="148.8833" TopMargin="1400.6875" BottomMargin="5.3125" ctype="SpriteObjectData">
+          <AbstractNodeData Name="selectbox_02" ActionTag="-613737666" Tag="78" IconVisible="False" LeftMargin="1733.1211" RightMargin="149.8789" TopMargin="1399.8086" BottomMargin="6.1914" ctype="SpriteObjectData">
             <Size X="165.0000" Y="130.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1816.6167" Y="70.3125" />
+            <Position X="1815.6211" Y="71.1914" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8870" Y="0.0458" />
+            <PrePosition X="0.8865" Y="0.0463" />
             <PreSize X="0.0806" Y="0.0846" />
             <FileData Type="PlistSubImage" Path="select_bg.png" Plist="whiteboard.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="selectbox_03" ActionTag="1367995983" Tag="79" IconVisible="False" LeftMargin="1577.3506" RightMargin="305.6494" TopMargin="1400.6875" BottomMargin="5.3125" ctype="SpriteObjectData">
+          <AbstractNodeData Name="selectbox_03" ActionTag="1367995983" Tag="79" IconVisible="False" LeftMargin="1576.3746" RightMargin="306.6254" TopMargin="1399.8086" BottomMargin="6.1914" ctype="SpriteObjectData">
             <Size X="165.0000" Y="130.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1659.8506" Y="70.3125" />
+            <Position X="1658.8746" Y="71.1914" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8105" Y="0.0458" />
+            <PrePosition X="0.8100" Y="0.0463" />
             <PreSize X="0.0806" Y="0.0846" />
             <FileData Type="PlistSubImage" Path="select_bg.png" Plist="whiteboard.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="selectbox_00" ActionTag="1546855597" Tag="76" IconVisible="False" LeftMargin="1575.5151" RightMargin="307.4849" TopMargin="1400.6843" BottomMargin="5.3157" ctype="SpriteObjectData">
-            <Size X="165.0000" Y="130.0000" />
+          <AbstractNodeData Name="selectbox" ActionTag="1023935365" Tag="31" IconVisible="False" LeftMargin="1656.9866" RightMargin="76.0134" TopMargin="1402.7932" BottomMargin="9.2068" TouchEnable="True" ctype="SliderObjectData">
+            <Size X="315.0000" Y="124.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1658.0151" Y="70.3157" />
+            <Position X="1814.4866" Y="71.2068" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8096" Y="0.0458" />
-            <PreSize X="0.0806" Y="0.0846" />
-            <FileData Type="PlistSubImage" Path="select_box.png" Plist="whiteboard.plist" />
-            <BlendFunc Src="1" Dst="771" />
+            <PrePosition X="0.8860" Y="0.0464" />
+            <PreSize X="0.1538" Y="0.0807" />
+            <BackGroundData Type="PlistSubImage" Path="none.png" Plist="whiteboard.plist" />
+            <ProgressBarData Type="PlistSubImage" Path="none.png" Plist="whiteboard.plist" />
+            <BallNormalData Type="PlistSubImage" Path="select_box.png" Plist="whiteboard.plist" />
+            <BallPressedData Type="PlistSubImage" Path="select_box.png" Plist="whiteboard.plist" />
+            <BallDisabledData Type="PlistSubImage" Path="select_box.png" Plist="whiteboard.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
