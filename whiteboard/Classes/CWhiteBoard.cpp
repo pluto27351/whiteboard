@@ -2,8 +2,6 @@
 #include "ui/CocosGUI.h"
 #include "CWhiteBoard.h"
 
-#define CENTER_POS Vec2(1024,768)
-
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -30,15 +28,14 @@ bool CWhiteBoard::init()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("whiteboard.plist");
 	auto rootNode = CSLoader::createNode("white_board.csb");
 	addChild(rootNode);
-
-	setButton(*rootNode);
+	_viewSize = rootNode->getContentSize();
 
 	_handDrawing = CDrawingPanel::create();
 	_handDrawing->initDrawingPanel(*rootNode, *this);
 	_handDrawing->retain();
 
+	setButton(*rootNode);
 	switchButton(BK_PEN);
-
 
 	_listener1 = EventListenerTouchOneByOne::create();	//創建一個一對一的事件聆聽器
 	_listener1->onTouchBegan = CC_CALLBACK_2(CWhiteBoard::onTouchBegan, this);		//加入觸碰開始事件
@@ -95,13 +92,13 @@ void CWhiteBoard::setButton(Node &rootNode) {
 	_sceneBar->addEventListener(CC_CALLBACK_2(CWhiteBoard::sceneChange, this));
 
 	_eraserPic = (Sprite *)Sprite::createWithSpriteFrameName("eraser_line.png");
-	_eraserPic->setPosition(CENTER_POS);
+	_eraserPic->setPosition(Vec2(_viewSize.width/2,_viewSize.height/2));
 	_eraserPic->setScale(0.3f);
 	_eraserPic->setVisible(false);
 	addChild(_eraserPic, INTERFACE_LEVEL); 
 
 	_penPic = (Sprite *)Sprite::createWithSpriteFrameName("brush.png");
-	_penPic->setPosition(CENTER_POS);
+	_penPic->setPosition(Vec2(_viewSize.width / 2, _viewSize.height / 2));
 	_penPic->setScale(0.3f);
 	_penPic->setVisible(false);
 	addChild(_penPic, INTERFACE_LEVEL);
@@ -207,8 +204,27 @@ void CWhiteBoard::brushChange(cocos2d::Ref* sender, cocos2d::ui::Slider::EventTy
 	}
 
 }
-void CWhiteBoard::sceneChange(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) {
+void CWhiteBoard::sceneChange(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type) 
+{
+	Slider* slider = dynamic_cast<Slider*>(sender);
+	int percent = slider->getPercent();
 
+	if (type == Slider::EventType::ON_PERCENTAGE_CHANGED)
+	{
+		_handDrawing->setPosition(Vec2(percent * _viewSize.width / -50.0f, 0));
+		
+	}
+	else if (type == Slider::EventType::ON_SLIDEBALL_UP) {
+		int scene;
+
+		if (percent > 75)    scene = 2;
+		else if(percent >25) scene = 1;
+		else				 scene = 0;
+
+		_sceneBar->setPercent(scene*50);
+		_handDrawing->setPosition(Vec2(0-scene * _viewSize.width, 0));
+		_handDrawing->setNowBoard(scene);
+	}
 }
 
 CWhiteBoard::~CWhiteBoard()

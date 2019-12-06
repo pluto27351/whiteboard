@@ -3,6 +3,7 @@
 CDrawingPanel* CDrawingPanel::_pHandDrawing = nullptr;
 
 CDrawingPanel::~CDrawingPanel() {
+	_pWhiteBoard.clear();
 	_penBrushList.clear();
 	_eraserBrushList.clear();
 	_pHandDrawing = nullptr;
@@ -40,7 +41,8 @@ CDrawingPanel *CDrawingPanel::getInstance()
 
 void  CDrawingPanel::initDrawingPanel(Node &rootNode, cocos2d::Layer &parent)	// 設定初始內容
 {
-	
+	parent.addChild(_pHandDrawing, WHITEBOARD_LEVEL);
+
 	_lineColor = _defaultColor[black] = color_black;
 	_defaultColor[blue] = color_blue;
 	_defaultColor[red] = color_red;
@@ -48,12 +50,17 @@ void  CDrawingPanel::initDrawingPanel(Node &rootNode, cocos2d::Layer &parent)	//
 	_toolMode = PEN_MODE;
 	_brushSize = 0.3f;
 
+	//parent.addChild(&_boards, WHITEBOARD_LEVEL);
 	// 建立白板
 	Size size = rootNode.getContentSize();
-	_pWhiteBoard = RenderTexture::create(size.width, size.height, Texture2D::PixelFormat::RGBA8888);
-	_pWhiteBoard->retain();
-	_pWhiteBoard->setPosition(Vec2(size.width / 2, size.height / 2));
-	parent.addChild(_pWhiteBoard, WHITEBOARD_LEVEL);
+	for (int i = 0; i < 3; i++) {
+		RenderTexture *board = RenderTexture::create(size.width, size.height, Texture2D::PixelFormat::RGBA8888);
+		board->retain();
+		board->setPosition(Vec2(size.width *(i+0.5f), size.height / 2));
+		addChild(board, 0);
+		_pWhiteBoard.push_back(board);
+	}
+	_nowBoard = 0;
 
 	_pPenBrush = (Sprite *)Sprite::createWithSpriteFrameName("brush.png");
 	_pPenBrush->retain();
@@ -87,7 +94,7 @@ void CDrawingPanel::drawing(Point &pt)
 
 void CDrawingPanel::clearWhiteBoard()
 {
-	_pWhiteBoard->clear(0, 0, 0, 0);
+	_pWhiteBoard[_nowBoard]->clear(0, 0, 0, 0);
 }
 
 void CDrawingPanel::setLineColor(Color3B color)
@@ -107,7 +114,7 @@ bool CDrawingPanel::touchesMoved(Point inPt, Point inPrePt)
 
 	// 產生手繪線
 	if (!bBtnOn) {
-		_pWhiteBoard->begin();
+		_pWhiteBoard[_nowBoard]->begin();
 		float distance = inPt.getDistance(inPrePt);
 		if (distance > 1) {
 			if (_toolMode == PEN_MODE) {
@@ -143,7 +150,7 @@ bool CDrawingPanel::touchesMoved(Point inPt, Point inPrePt)
 				}
 			}
 		}
-		_pWhiteBoard->end();
+		_pWhiteBoard[_nowBoard]->end();
 		if (!_penBrushList.empty()) _penBrushList.clear();
 		if (!_eraserBrushList.empty()) _eraserBrushList.clear();
 	}

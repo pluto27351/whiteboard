@@ -18,10 +18,13 @@ using namespace cocos2d;
 enum color { black, blue, red };
 enum mode { PEN_MODE, ERASER_MODE };
 
-class CDrawingPanel : public Ref
+class CDrawingPanel : public Layer
 {
 protected:
-	RenderTexture *_pWhiteBoard;
+	//RenderTexture *_pWhiteBoard;
+	//Node _boards;
+	std::vector<RenderTexture *>_pWhiteBoard;
+	int _nowBoard;
 	Sprite* _pPenBrush;
 	Sprite* _pEraserBrush;
 
@@ -45,6 +48,7 @@ public:
 	void SetPen(int colorNum);
 	void setMode(int mode) { _toolMode = mode; }
 	void setBrushSize(float s) { _brushSize = s; }
+	void setNowBoard(int i) { _nowBoard = i; }
 	Color3B getColor() { return (_lineColor); }
 
 	bool touchesBegin(Point inPt);

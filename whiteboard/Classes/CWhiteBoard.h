@@ -11,6 +11,7 @@ using namespace ui;
 class CWhiteBoard : public cocos2d::Layer
 {
 private:
+	Size _viewSize;
 	CDrawingPanel *_handDrawing;
 	CButton _clearAllBtn;
 	CSwitch _toolBtn[4];
