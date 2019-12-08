@@ -20,6 +20,7 @@ private:
 	Slider *_brushSize,*_sceneBar;
 	Text *_brushSizeText;
 	Sprite *_eraserPic,*_penPic;
+	Sprite *_eraserB, *_penB;
 
 	int _toolMode;
 

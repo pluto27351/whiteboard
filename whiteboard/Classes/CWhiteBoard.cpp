@@ -34,7 +34,14 @@ bool CWhiteBoard::init()
 	_handDrawing->initDrawingPanel(*rootNode, *this);
 	_handDrawing->retain();
 
-	setButton(*rootNode);
+	setButton(*rootNode);	
+	
+	_handDrawing->setBrushSize(0.3f);
+	_eraserPic->setScale(0.3f);
+	_penPic->setScale(0.3f);
+	_brushSize->setPercent(20);
+	_brushSizeText->setString(StringUtils::format("%d", 20));
+
 	switchButton(BK_PEN);
 
 	_listener1 = EventListenerTouchOneByOne::create();	//創建一個一對一的事件聆聽器
@@ -105,15 +112,14 @@ void CWhiteBoard::setButton(Node &rootNode) {
 
 	_eraserPic = (Sprite *)Sprite::createWithSpriteFrameName("eraser_line.png");
 	_eraserPic->setPosition(Vec2(_viewSize.width/2,_viewSize.height/2));
-	_eraserPic->setScale(0.3f);
 	_eraserPic->setVisible(false);
 	addChild(_eraserPic, INTERFACE_LEVEL+1); 
 
 	_penPic = (Sprite *)Sprite::createWithSpriteFrameName("brush_line.png");
 	_penPic->setPosition(Vec2(_viewSize.width / 2, _viewSize.height / 2));
-	_penPic->setScale(0.3f);
 	_penPic->setVisible(false);
 	addChild(_penPic, INTERFACE_LEVEL+1);
+
 }
 
 
@@ -145,15 +151,25 @@ void CWhiteBoard::switchButton(int num) {
 bool CWhiteBoard::onTouchBegan(cocos2d::Touch *pTouch, cocos2d::Event *pEvent) {
 	Point touchLoc = pTouch->getLocation();
 
-	for (int i = 0; i < 4; i++) {
-		_toolBtn[i].touchesBegin(touchLoc);
-	}
-	_clearAllBtn.touchesBegin(touchLoc);
+	bool touchOnButton = false;
 
-	_handDrawing->touchesBegin(touchLoc);
-		//if (touchOnEmpty && _toolMode == HAND_MODE) {
-		//	_handDrawing->changeToBlackPen();
-		//}
+	for (int i = 0; i < 4; i++) {
+		touchOnButton |= _toolBtn[i].touchesBegin(touchLoc);
+	}
+	touchOnButton |= _clearAllBtn.touchesBegin(touchLoc);
+
+	if (!touchOnButton) {
+		//_handDrawing->touchesBegin(touchLoc);
+		if (_toolMode == ERASER_MODE) {
+			_eraserPic->setPosition(touchLoc);
+			_eraserPic->setVisible(true);
+		}
+		else {
+			_penPic->setPosition(touchLoc);
+			_penPic->setVisible(true);
+		}
+	}
+
 	
 	return true;
 }
@@ -163,12 +179,24 @@ void CWhiteBoard::onTouchMoved(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
 	Point touchLoc = pTouch->getLocation();
 	Point preTouchLoc = pTouch->getPreviousLocation();
 
-	for (int i = 0; i < 4; i++) {
-		_toolBtn[i].touchesMoved(touchLoc);
-	}
-	_clearAllBtn.touchesMoved(touchLoc);
+	bool touchOnButton = false;
 
-	_handDrawing->touchesMoved(touchLoc, preTouchLoc);
+	for (int i = 0; i < 4; i++) {
+		touchOnButton |= _toolBtn[i].touchesMoved(touchLoc);
+	}
+	touchOnButton |= _clearAllBtn.touchesMoved(touchLoc);
+
+	if (!touchOnButton) {
+		_handDrawing->touchesMoved(touchLoc, preTouchLoc);
+		if (_toolMode == ERASER_MODE) {
+			_eraserPic->setPosition(touchLoc);
+		}
+		else {
+			_penPic->setPosition(touchLoc);
+		}
+	}
+
+
 
 }
 
@@ -188,6 +216,15 @@ void  CWhiteBoard::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
 	}
 
 	_handDrawing->touchesEnded(touchLoc);
+
+
+	//_handDrawing->touchesBegin(touchLoc);
+	if (_toolMode == ERASER_MODE) {
+		_eraserPic->setVisible(false);
+	}
+	else {
+		_penPic->setVisible(false);
+	}
 	
 }
 
@@ -198,18 +235,24 @@ void CWhiteBoard::brushChange(cocos2d::Ref* sender, cocos2d::ui::Slider::EventTy
 		Slider* slider = dynamic_cast<Slider*>(sender);
 		int percent = slider->getPercent();
 		percent = (percent / 10) * 10;
-		if (percent == 0)percent = 1;
 		_brushSize->setPercent(percent);
+
 		_brushSizeText->setString(StringUtils::format("%d", percent));
 
-		float size = percent / 100.0f;
+		float size = percent / 100.0f + 0.1f;
 		_handDrawing->setBrushSize(size);
-		if (_toolMode == ERASER_MODE)_eraserPic->setScale(size);
-		else _penPic->setScale(size);
+		_eraserPic->setScale(size);
+		_penPic->setScale(size);
 	}
 	else if (type == Slider::EventType::ON_SLIDEBALL_DOWN) {
-		if(_toolMode == ERASER_MODE)_eraserPic->setVisible(true);
-		else _penPic->setVisible(true);
+		if (_toolMode == ERASER_MODE) {
+			_eraserPic->setPosition(Vec2(_viewSize.width / 2, _viewSize.height / 2));
+			_eraserPic->setVisible(true);
+		}
+		else {
+			_penPic->setPosition(Vec2(_viewSize.width / 2, _viewSize.height / 2));
+			_penPic->setVisible(true);
+		}
 	}
 	else if (type == Slider::EventType::ON_SLIDEBALL_UP) {
 		if (_toolMode == ERASER_MODE)_eraserPic->setVisible(false);
